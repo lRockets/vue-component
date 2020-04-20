@@ -15,7 +15,8 @@
 			</div>
 			<div class="pannel-content">
 				<div class="weeks">
-					<span class="week" v-for="item in week" :key="item">{{item}}</span>
+					
+					<span class="week" v-for="item in WEEKS" :key="item">{{item}}</span>
 				</div>
 				<div class="days">
 					<div v-for="i in 6" :key="i">
@@ -39,15 +40,16 @@
 
 <script>
 	import * as utils from '@/utils.js';
+	const WEEKS = ['日', '一', '二', '三', '四', '五', '六'];
 	export default{
 		props:{
 			value:{
 				type:[Date],
 				default:()=>new Date()
 			},
-			start:{
+			firstDayOfWeek:{
 				type:Number,
-				default:0
+				default:7
 			},
 			showClose:{
 				type:Boolean,
@@ -72,11 +74,14 @@
 			}
 		},
 		computed:{
-			week(){
-				let weekArr=['日','一','二','三','四','五','六'];
-				let end=weekArr.slice(0,this.start);
-				let val=weekArr.splice(0,this.start);
-				return weekArr.concat(end);
+			WEEKS() {
+			  const week = this.firstDayOfWeek;
+			  return WEEKS.concat(WEEKS).slice(week, week + 7);
+			},
+			offsetDay() {
+			  const week = this.firstDayOfWeek;
+			  // 周日为界限，左右偏移的天数，3217654 例如周一就是 -1，目的是调整前两行日期的位置
+			  return week > 3 ? 7 - week : -week;
 			},
 			formatDate(){
 				let {year,month,day}=utils.getYearMonthDay(this.value);
@@ -87,7 +92,7 @@
 				console.log(year,month+1,1)
 				let currentFirstDay=utils.getDate(year,month,1); //获取当前月份的第一天
 				let week=currentFirstDay.getDay();	//第一天星期几
-				let startDay=currentFirstDay-(week-this.start)*60*60*1000*24; //开始天数
+				let startDay=currentFirstDay-(week-this.offsetDay)*60*60*1000*24; //开始天数
 				let arr=[];
 				for(var i=0;i<42;i++){
 					arr.push(new Date(startDay+i*60*60*1000*24))

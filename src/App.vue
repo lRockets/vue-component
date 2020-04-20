@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-	  <datepicker v-model="value" ></datepicker>
+	  <datepicker v-model="value"></datepicker>
 	  <!-- <date-pick v-model="time1" valueType="format"></date-pick> -->
 	  <!-- <menus>
 		  <sub-menu>
