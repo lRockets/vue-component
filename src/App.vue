@@ -1,32 +1,54 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+	  <datepicker v-model="value" ></datepicker>
+	  <!-- <date-pick v-model="time1" valueType="format"></date-pick> -->
+	  <!-- <menus>
+		  <sub-menu>
+			  <template slot="title">标题</template>
+			  <menu-item>content</menu-item>
+			  <menu-item>
+				   <sub-menu>
+					  <template slot="title">标题</template>
+					  <menu-item>content</menu-item>
+					</sub-menu>  
+			  </menu-item>
+		  </sub-menu>
+	  </menus> -->
   </div>
 </template>
 
+<script>
+	import DatePick from 'vue2-datepicker';
+	import 'vue2-datepicker/index.css';
+	import 'vue2-datepicker/locale/zh-cn';
+	  
+	import datepicker from '@/components/datepicker';
+	import menuItem from '@/components/menu-item.vue';
+	import menus from '@/components/menu.vue';
+	import subMenu from '@/components/sub-menu.vue';
+	export default{
+		components:{
+			subMenu,
+			menuItem,
+			menus,
+			DatePick,
+			datepicker
+		},
+		data(){
+			return{
+				time1:null,
+				value:new Date()
+			}
+		}
+	}
+</script>
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+*{
+	margin:0;
+	padding:0;
+	list-style:none;
 }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+#app{
+	margin:20px;
 }
 </style>
