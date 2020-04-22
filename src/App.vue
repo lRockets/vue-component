@@ -1,6 +1,9 @@
 <template>
   <div id="app">
 	  <datepicker v-model="value"></datepicker>
+	  <button @click="confirm">点击我</button>
+
+	  
 	  <!-- <date-pick v-model="time1" valueType="format"></date-pick> -->
 	  <!-- <menus>
 		  <sub-menu>
@@ -18,6 +21,8 @@
 </template>
 
 <script>
+	// import Message from './src/main.js';
+	import Message from '@/components/message.js';
 	import DatePick from 'vue2-datepicker';
 	import 'vue2-datepicker/index.css';
 	import 'vue2-datepicker/locale/zh-cn';
@@ -29,6 +34,7 @@
 	export default{
 		components:{
 			subMenu,
+			// Message,
 			menuItem,
 			menus,
 			DatePick,
@@ -36,12 +42,25 @@
 		},
 		data(){
 			return{
+				visible:false,
 				time1:null,
 				value:new Date()
 			}
+		},
+		methods:{
+			confirm(){
+				Message({
+					message:'测试的',
+					type:'error',
+					duration:2000
+				})
+			}
+			
 		}
 	}
 </script>
+
+
 <style lang="scss">
 *{
 	margin:0;
