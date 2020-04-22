@@ -3,7 +3,6 @@
 	  <datepicker v-model="value"></datepicker>
 	  <button @click="confirm">点击我</button>
 
-	  
 	  <!-- <date-pick v-model="time1" valueType="format"></date-pick> -->
 	  <!-- <menus>
 		  <sub-menu>
@@ -44,7 +43,11 @@
 			return{
 				visible:false,
 				time1:null,
-				value:new Date()
+				value:new Date(),
+				pageSize : 20 , //每页显示20条数据
+				currentPage : 1, //当前页码
+				count : 200, //总记录数
+
 			}
 		},
 		methods:{
@@ -54,8 +57,10 @@
 					type:'error',
 					duration:2000
 				})
+			},
+			pageChange(){
+				console.log('change')
 			}
-			
 		}
 	}
 </script>
