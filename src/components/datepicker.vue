@@ -2,7 +2,6 @@
 	<div v-click-outSlide="blur" style="position:relative;">
 		<div class="input">
 			<input type="text" @focus="focus" :value="formatDate">
-			<i v-if="showClose" class="showClose">x</i>
 		</div>
 		<div class="pannel" v-if="show">
 			<div class="pannel-nav">
@@ -89,7 +88,6 @@
 			},
 			visibleDays(){ // 计算当前是周几
 				let {year,month,day}=utils.getYearMonthDay(new Date(this.time.year,this.time.month-1,1));
-				console.log(year,month+1,1)
 				let currentFirstDay=utils.getDate(year,month,1); //获取当前月份的第一天
 				let week=currentFirstDay.getDay();	//第一天星期几
 				let startDay=currentFirstDay-(week-this.offsetDay)*60*60*1000*24; //开始天数
@@ -181,13 +179,14 @@
 		text-align: center;
 	}
 	.input{
-		input{
-			&:hover +.showClose,&:focus +.showClose{
-				display: block;
-			}
-		}
+		position:relative;
+		display: inline-block;
 		.showClose{
-			display: none;
+			position:absolute;
+			right:10px;
+			top:50%;
+			cursor:pointer;
+			transform:translateY(-50%);
 		}
 	}
 	.pannel-content{

@@ -3,6 +3,8 @@
 	  <router-view></router-view>
 	  <!-- <pagination :currentPage="6" :pageCount="8" :pagerCount="6"></pagination> -->
 	  <!-- <datepicker v-model="value"></datepicker> -->
+	  <datepicker v-model="value"></datepicker>
+	  <button @click="confirm">点击我</button>
 	  <!-- <date-pick v-model="time1" valueType="format"></date-pick> -->
 	  <!-- <menus>
 		  <sub-menu>
@@ -20,7 +22,11 @@
 </template>
 
  <script>
+	
+<script>
+	// import Message from './src/main.js';
 	import pagination from '@/components/pagination.vue';
+	import Message from '@/components/message.js';
 	import DatePick from 'vue2-datepicker';
 	import 'vue2-datepicker/index.css';
 	import 'vue2-datepicker/locale/zh-cn';
@@ -32,6 +38,7 @@
 	export default{
 		components:{
 			subMenu,
+			// Message,
 			menuItem,
 			menus,
 			DatePick,
@@ -40,8 +47,25 @@
 		},
 		data(){
 			return{
+				visible:false,
 				time1:null,
-				value:new Date()
+				value:new Date(),
+				pageSize : 20 , //每页显示20条数据
+				currentPage : 1, //当前页码
+				count : 200, //总记录数
+
+			}
+		},
+		methods:{
+			confirm(){
+				Message({
+					message:'测试的',
+					type:'error',
+					duration:2000
+				})
+			},
+			pageChange(){
+				console.log('change')
 			}
 		}
 	}
