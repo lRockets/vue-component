@@ -21,8 +21,6 @@
   </div>
 </template>
 
- <script>
-	
 <script>
 	// import Message from './src/main.js';
 	import pagination from '@/components/pagination.vue';
