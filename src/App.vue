@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-	  <datepicker v-model="value"></datepicker>
+	  <router-view></router-view>
+	  <!-- <pagination :currentPage="6" :pageCount="8" :pagerCount="6"></pagination> -->
+	  <!-- <datepicker v-model="value"></datepicker> -->
 	  <!-- <date-pick v-model="time1" valueType="format"></date-pick> -->
 	  <!-- <menus>
 		  <sub-menu>
@@ -17,7 +19,8 @@
   </div>
 </template>
 
-<script>
+ <script>
+	import pagination from '@/components/pagination.vue';
 	import DatePick from 'vue2-datepicker';
 	import 'vue2-datepicker/index.css';
 	import 'vue2-datepicker/locale/zh-cn';
@@ -32,6 +35,7 @@
 			menuItem,
 			menus,
 			DatePick,
+			pagination,
 			datepicker
 		},
 		data(){
@@ -42,6 +46,7 @@
 		}
 	}
 </script>
+
 <style lang="scss">
 *{
 	margin:0;
