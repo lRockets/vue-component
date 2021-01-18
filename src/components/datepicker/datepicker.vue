@@ -75,12 +75,23 @@
 		computed:{
 			WEEKS() {
 			  const week = this.firstDayOfWeek;
-			  return WEEKS.concat(WEEKS).slice(week, week + 7);
+			  // return WEEKS.concat(WEEKS).slice(week, week + 7);
+			  return WEEKS.slice(week).concat( WEEKS.slice(0,week))
 			},
 			offsetDay() {
-			  const week = this.firstDayOfWeek;
+				
+				// 1234567 => 6
+				// 2345671 => 2
+				// 3456712 => 3 
+				// 4567123 => 4
+				// 5671234 => 5
+				// 6712345 => 1
+				// 7123456 => 0
+				
+
+			  const week = this.firstDayOfWeek == 0 ? 7 : this.firstDayOfWeek;
 			  // 周日为界限，左右偏移的天数，3217654 例如周一就是 -1，目的是调整前两行日期的位置
-			  return week > 3 ? 7 - week : -week;
+			  return week == 0 ? 0 : 7 - week;
 			},
 			formatDate(){
 				let {year,month,day}=utils.getYearMonthDay(this.value);

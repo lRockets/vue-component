@@ -1,5 +1,6 @@
 <template>
 	<div class="about">
+		1
 		<hello></hello>
 	</div>
 </template>
@@ -11,7 +12,7 @@
 			hello
 		},
 		mounted() {
-			let com = this.findComponentDownward(this, 'ab');
+			// let com = this.findComponentDownward(this, 'ab');
 		},
 		methods: {
 			findComponentDownward(context, componentName) {
